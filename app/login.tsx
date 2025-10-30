@@ -29,7 +29,7 @@ export default function LoginScreen() {
           <TextInput
             style={styles.input}
             placeholder="Enter your email or username"
-            placeholderTextColor="#9B8C9F"
+            placeholderTextColor="#A2818C"
             value={email}
           />
         </View>
@@ -39,13 +39,13 @@ export default function LoginScreen() {
             <TextInput
               style={styles.input}
               placeholder="Enter your password"
-              placeholderTextColor="#9B8C9F"
+              placeholderTextColor="#A2818C"
               secureTextEntry={!showPassword}
               value={password}
               onChangeText={setPassword}
             />
             <TouchableOpacity style={styles.eyeIcon}>
-              <Ionicons name="eye-off-outline" size={22} color="#A08E9C" />
+              <Ionicons name="eye-off-outline" size={22} color="#A2818C" />
             </TouchableOpacity>
           </View>
         </View>
@@ -105,11 +105,14 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#fff",
+    borderWidth:1,
+    borderColor:"#E6DCE0",
     borderRadius: 25,
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 15,
     color: "#000",
+    
   },
   passwordContainer: {
     position: "relative",

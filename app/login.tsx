@@ -1,6 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import {
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -9,18 +12,30 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import App from "../firebaseConfig";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
+  const loginWithFirebase = async()=>{
+      try {
+        
+        const auth =  getAuth(App)
+        const res = await  signInWithEmailAndPassword(auth,email,password)
+        Alert.alert('Success',res.user.uid)
+        
+      } catch (error) {
+        Alert.alert('Ooops','Somthing went wrong!')
+      }
+    } 
   return (
       <SafeAreaView style={styles.container}>
         <View style={styles.logoContainer}>
           <Image
             style={{ width: 100, height: 100 }}
-            source={require("@/assets/logo1.png")}
+            source={require("@/assets/logo1.jpeg")}
           />
         </View>
         <Text style={styles.title}>Welcome Back!</Text>
@@ -31,6 +46,8 @@ export default function LoginScreen() {
             placeholder="Enter your email or username"
             placeholderTextColor="#A2818C"
             value={email}
+              onChangeText={setEmail}
+
           />
         </View>
         <View style={styles.inputContainer}>
@@ -54,13 +71,13 @@ export default function LoginScreen() {
           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={loginWithFirebase}>
           <Text style={styles.loginText}>Log In</Text>
         </TouchableOpacity>
 
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>New to ShareBite? </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>router.push("/signup")}>
             <Text style={styles.signupLink}>Sign Up</Text>
           </TouchableOpacity>
         </View>
@@ -78,12 +95,6 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     marginBottom: 20,
-  },
-  logoCircle: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: "#B90C40",
   },
   title: {
     fontSize: 26,
@@ -138,6 +149,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "90%",
     marginBottom: 25,
+    shadowColor: "#B90C40",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   loginText: {
     color: "#fff",

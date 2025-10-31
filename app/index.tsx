@@ -12,17 +12,17 @@ export default function HomeScreen() {
       }}
     >
       <Text style={styles.title}>ShareBite</Text>
-      <Text style={styles.ssTitle}>Share more, waste less</Text>
+      <Text style={styles.subTitle}>Share more, waste less</Text>
       <Image
         style={{ width: 250, height: 250 }}
-        source={require("@/assets/logo1.png")}
+        source={require("@/assets/logo1.jpeg")}
       />
       <Text style={styles.txtJoin}>Join Our Community</Text>
       <TouchableOpacity style={styles.buttonSU} onPress={() => router.push("/signup")}>
         <Text style={styles.txtSignup}>Sign Up</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.buttonSI} onPress={() => router.push("/login")}>
-        <Text style={styles.txtSignin}>Sign In</Text>
+        <Text style={styles.txtSignin}>Log In</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     marginBottom: 3,
   },
-  ssTitle: {
+  subTitle: {
     fontSize: 15,
     marginBottom: 25,
     fontWeight: "500",
@@ -54,7 +54,13 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginBottom: 35,
     shadowColor: "#B90C40",
-    elevation: 10,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   txtSignup: {
     color: "#fff",
@@ -70,7 +76,13 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginBottom: 25,
     shadowColor: "#B90C40",
-    elevation: 10,
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   txtSignin: {
     color: "#B90C40",
